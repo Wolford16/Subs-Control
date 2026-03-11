@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import SearchBar from '@/components/SearchBar';
 import FilterMenu from '@/components/FilterMenu';
+import SectionHeader from '@/components/SectionHeader';
 
 export default function HomeScreen() {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -13,12 +14,13 @@ export default function HomeScreen() {
 
   const handleMenuOption = (option: string) => {
     console.log('Opción seleccionada:', option);
-    setMenuVisible(false); //Aqui es para cuando seleccionamos una opcion del menu nomas
+    setMenuVisible(false);
   };
 
   return (
     <View style={styles.container}>
-      {/* Boton hamburguesa del menu*/}
+
+      {/* Botón hamburguesa */}
       <TouchableOpacity
         style={styles.menuButton}
         onPress={() => setMenuVisible(!menuVisible)}
@@ -26,16 +28,19 @@ export default function HomeScreen() {
         <Text style={styles.menuText}>☰</Text>
       </TouchableOpacity>
 
-      {/* Menú hamburguesa, las opciones basicamente */}
+      {/* Menú hamburguesa */}
       {menuVisible && (
         <View style={styles.menuContainer}>
           <FilterMenu onSelectOption={handleMenuOption} />
         </View>
       )}
 
-      {/* nota de cesar: de momento es que esten, ya luego haremos el dise;o esperado */}
       {/* Search Bar */}
       <SearchBar onSearch={handleSearch} />
+
+      {/* Título de sección */}
+      <SectionHeader title="Todas las suscripciones" />
+
     </View>
   );
 }
